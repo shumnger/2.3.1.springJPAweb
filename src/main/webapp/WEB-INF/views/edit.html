@@ -6,30 +6,30 @@
 <body>
 
 <div align="center">
-    <h2>Edit User</h2>
-    <form action="/edit" method="post">
-        <table border="0" cellpadding="5">
-            <tr>
-                <td>ID:</td>
-                <td><input type="number" th:field="*{user.id}" readonly/></td>
-            </tr>
-            <tr>
-                <td>Name:</td>
-                <td><input type="text" th:field="*{user.name}"/></td>
-            </tr>
-            <tr>
-                <td>Last Name:</td>
-                <td><input type="text" th:field="*{user.lastName}"/></td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" th:field="*{user.eMail}"/></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Edit"></td>
-            </tr>
-        </table>
-    </form>
+  <h2>Edit User</h2>
+  <form th:method="patch" action="/edit">
+    <table border="0" cellpadding="5">
+      <tr>
+        <td>ID:</td>
+        <td><input type="number" th:field="*{user.id}" readonly/></td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" th:field="*{user.name}"/></td>
+      </tr>
+      <tr>
+        <td>Last Name:</td>
+        <td><input type="text" th:field="*{user.lastName}"/></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input type="text" th:field="*{user.eMail}"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit" value="Edit"></td>
+      </tr>
+    </table>
+  </form>
 </div>
 </body>
 </html>
