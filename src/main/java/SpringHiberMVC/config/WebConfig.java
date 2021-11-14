@@ -1,8 +1,10 @@
 package SpringHiberMVC.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
@@ -25,12 +27,14 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
     @Override
     public void onStartup(ServletContext aServletContext) throws ServletException {
-        super.onStartup(aServletContext);
-        registerHiddenFieldFilter(aServletContext);
-    }
 
-    private void registerHiddenFieldFilter(ServletContext aContext) {
-        aContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+        FilterRegistration.Dynamic filterRegistration = aServletContext.addFilter("characterEncodingFilter",
+                new CharacterEncodingFilter("UTF-8", true, true));
+        filterRegistration.addMappingForUrlPatterns(null, false, "/*");
+
+        filterRegistration = aServletContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter() );
+        filterRegistration.addMappingForUrlPatterns(null, false, "/*");
+
+        super.onStartup(aServletContext);
     }
 }
